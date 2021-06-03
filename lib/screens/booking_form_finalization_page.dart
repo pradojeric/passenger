@@ -2,10 +2,8 @@ import 'package:bmis_passenger/api/booking_api.dart';
 import 'package:bmis_passenger/models/booking_model.dart';
 import 'package:bmis_passenger/models/ride_model.dart';
 
-import '../screens/booking_details_page.dart';
 import '../widgets/appbar.dart';
 import '../widgets/form_button.dart';
-import '../widgets/form_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

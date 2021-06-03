@@ -1,8 +1,5 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:bmis_passenger/models/booking_model.dart';
-import 'package:bmis_passenger/models/ride_model.dart';
-import 'package:bmis_passenger/utils/constants.dart';
-
 import '../screens/my_bookings_page.dart';
 import '../widgets/appbar.dart';
 import '../widgets/form_button.dart';
@@ -41,7 +38,10 @@ class _BookingDetailsPageState extends State<BookingDetailsPage> {
                       children: [
                         Text(
                           '${widget.booking.companyName}',
-                          style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.w900, fontSize: 24.0),
+                          style: GoogleFonts.poppins(
+                              color: Colors.blue[900],
+                              fontWeight: FontWeight.w900,
+                              fontSize: 24.0),
                         ),
                       ],
                     ),
@@ -49,74 +49,110 @@ class _BookingDetailsPageState extends State<BookingDetailsPage> {
                       children: [
                         Text(
                           'Ticket #: ',
-                          style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.w900, fontSize: 16.0),
+                          style: GoogleFonts.poppins(
+                              color: Colors.blue[900],
+                              fontWeight: FontWeight.w900,
+                              fontSize: 16.0),
                         ),
                         Text('${widget.booking.bookingCode}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Bus: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Bus: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.bus}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Bus No: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Bus No: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.busNo}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Plate: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Plate: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.busPlate}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Trip: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Trip: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.routeName}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Distance: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Distance: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.distance} km'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Departure Time: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Departure Time: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.time}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Terminal: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Terminal: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.startTerminal}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('No of Pax: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('No of Pax: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.pax}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Dest. Terminal: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Dest. Terminal: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.endTerminal}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Amount: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Amount: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.fare.toStringAsFixed(2)}'),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Text('Bus Points: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                        Text('Bus Points: ',
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold)),
                         Text('${widget.booking.points}'),
                       ],
                     ),

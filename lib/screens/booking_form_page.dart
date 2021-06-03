@@ -1,11 +1,8 @@
 import 'package:bmis_passenger/api/booking_api.dart';
 import 'package:bmis_passenger/models/ride_model.dart';
-import 'package:bmis_passenger/models/terminal_model.dart';
-import 'package:bmis_passenger/utils/shared_preferences.dart';
 import 'package:flutter/services.dart';
 
 import '../screens/booking_form_finalization_page.dart';
-import '../screens/booking_result_page.dart';
 import '../widgets/appbar.dart';
 import '../widgets/form_button.dart';
 import '../widgets/form_text_field.dart';
@@ -48,62 +45,93 @@ class _BookingFormPageState extends State<BookingFormPage> {
                         children: [
                           Text(
                             '${widget.ride.companyName}',
-                            style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.w900, fontSize: 24.0),
+                            style: GoogleFonts.poppins(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.w900,
+                                fontSize: 24.0),
                           ),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Bus: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Bus: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.busName}'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Bus No: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Bus No: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.busNo}'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Plate: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Plate: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.busPlate}'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Trip: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Trip: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.routeName}'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Start Terminal: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Start Terminal: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.startTerminal}'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Destination: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Destination: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.endTerminal}'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Distance: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Distance: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.totalKm} km'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Departure Time: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
+                          Text('Departure Time: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
                           Text('${widget.ride.scheduledTime}'),
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Text('Booked: ', style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.bold)),
-                          Text('${widget.ride.occupiedSeat}/${widget.ride.busSeat}'),
+                          Text('Booked: ',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.blue[900],
+                                  fontWeight: FontWeight.bold)),
+                          Text(
+                              '${widget.ride.occupiedSeat}/${widget.ride.busSeat}'),
                         ],
                       ),
                     ],
@@ -118,13 +146,16 @@ class _BookingFormPageState extends State<BookingFormPage> {
                       FormTextField(
                         autofocus: true,
                         initialValue: "0",
-                        formatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+                        formatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         icon: Icons.person_outline,
                         hint: 'No of Pax',
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           pax = int.parse(value);
-                          int available = widget.ride.busSeat - widget.ride.occupiedSeat;
+                          int available =
+                              widget.ride.busSeat - widget.ride.occupiedSeat;
                           if (pax < 1) return 'You must enter greater than 0';
                           if (pax > available) return "No seats available!";
                         },
@@ -176,7 +207,9 @@ class _BookingFormPageState extends State<BookingFormPage> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BookingFormFinalizationPage(widget.ride, pax, fare)),
+        MaterialPageRoute(
+            builder: (context) =>
+                BookingFormFinalizationPage(widget.ride, pax, fare)),
       );
     }
   }
