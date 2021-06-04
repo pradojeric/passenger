@@ -13,64 +13,63 @@ class CustomDrawer {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.blue[900],
               ),
-              child: Card(
-                child: FutureBuilder<RegisterModel>(
-                  future: SharedService.getProfileDetails(),
-                  builder: (context, snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.waiting:
+              child: FutureBuilder<RegisterModel>(
+                future: SharedService.getProfileDetails(),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          CircularProgressIndicator(),
+                        ],
+                      );
+                    case ConnectionState.active:
+                    case ConnectionState.done:
+                      if (snapshot.hasData) {
                         return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            CircularProgressIndicator(),
+                            Text(
+                              '${snapshot.data.lastName}, ${snapshot.data.firstName}',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24.0),
+                            ),
+                            Text(
+                              '${snapshot.data.address}',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 18.0),
+                            ),
+                            Text(
+                              '${snapshot.data.email}',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 18.0),
+                            ),
+                            Text(
+                              '${snapshot.data.contact}',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 18.0),
+                            ),
                           ],
                         );
-                      case ConnectionState.active:
-                      case ConnectionState.done:
-                        if (snapshot.hasData) {
-                          return ListView(
-                            children: <Widget>[
-                              Text(
-                                '${snapshot.data.lastName}, ${snapshot.data.firstName}',
-                                style: GoogleFonts.poppins(
-                                    color: Colors.blue[900],
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18.0),
-                              ),
-                              Text(
-                                '${snapshot.data.address}',
-                                style: GoogleFonts.poppins(
-                                    color: Colors.blue[900],
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18.0),
-                              ),
-                              Text(
-                                '${snapshot.data.email}',
-                                style: GoogleFonts.poppins(
-                                    color: Colors.blue[900],
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18.0),
-                              ),
-                              Text(
-                                '${snapshot.data.contact}',
-                                style: GoogleFonts.poppins(
-                                    color: Colors.blue[900],
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18.0),
-                              ),
-                            ],
-                          );
-                        } else {
-                          return Text('No Data');
-                        }
-                        break;
-                      default:
-                        return Text('Error');
-                    }
-                  },
-                ),
+                      } else {
+                        return Text('No Data');
+                      }
+                      break;
+                    default:
+                      return Text('Error');
+                  }
+                },
               ),
             ),
             ListTile(

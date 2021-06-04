@@ -3,10 +3,18 @@ import 'package:google_fonts/google_fonts.dart';
 
 class LabelButton extends StatelessWidget {
   final String liteText;
+  final double liteFont;
   final String boldText;
+  final double boldFont;
   final Function pressed;
 
-  const LabelButton({Key key, this.liteText, this.boldText, this.pressed})
+  const LabelButton(
+      {Key key,
+      this.liteText,
+      this.liteFont,
+      this.boldText,
+      this.boldFont,
+      this.pressed})
       : super(key: key);
 
   @override
@@ -18,12 +26,18 @@ class LabelButton extends StatelessWidget {
         child: RichText(
           text: TextSpan(
               text: liteText,
-              style: GoogleFonts.poppins(color: Colors.blue[900]),
+              style: GoogleFonts.poppins(
+                color: Colors.blue[900],
+                fontSize: liteFont ?? 14.0,
+              ),
               children: [
                 TextSpan(
                     text: boldText,
                     style: GoogleFonts.poppins(
-                        color: Colors.blue[900], fontWeight: FontWeight.bold))
+                      color: Colors.blue[900],
+                      fontWeight: FontWeight.bold,
+                      fontSize: boldFont ?? 14.0,
+                    ))
               ]),
         ),
       ),

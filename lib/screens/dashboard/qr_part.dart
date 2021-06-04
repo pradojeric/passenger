@@ -87,7 +87,9 @@ class _QrPartState extends State<QrPart> {
           children: [
             LabelButton(
               liteText: 'Ticket # ',
+              liteFont: 18.0,
               boldText: '${snapshot.data.bookingCode}',
+              boldFont: 18.0,
               pressed: () async {
                 if (aboard) {
                   Navigator.push(
@@ -127,20 +129,14 @@ class _QrPartState extends State<QrPart> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                elevation: 0.0,
-                child: Text(
-                  "Track",
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
+                  primary: _trackable ? Colors.blue[900] : Colors.grey,
                 ),
                 onPressed: () {
-                  //navigateToMapsPage(snapshot.data);
                   if (!_trackable) {
                     showDialog(
                       context: context,
@@ -154,10 +150,14 @@ class _QrPartState extends State<QrPart> {
                     navigateToMapsPage(snapshot.data);
                   }
                 },
-                color: _trackable ? Colors.blue[900] : Colors.grey,
-                textColor: Colors.white,
-                padding: EdgeInsets.all(8.0),
-                splashColor: Colors.grey,
+                child: Text(
+                  "Track",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
@@ -189,3 +189,36 @@ class _QrPartState extends State<QrPart> {
     );
   }
 }
+
+//  RaisedButton(
+//                 shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(10)),
+//                 elevation: 0.0,
+//                 child: Text(
+//                   "Track",
+//                   style: GoogleFonts.poppins(
+//                     color: Colors.white,
+//                     fontSize: 18,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//                 onPressed: () {
+//                   //navigateToMapsPage(snapshot.data);
+//                   if (!_trackable) {
+//                     showDialog(
+//                       context: context,
+//                       builder: (context) => AlertDialog(
+//                         title: Text('Track'),
+//                         content:
+//                             Text('Tracking is not available at the moment!'),
+//                       ),
+//                     );
+//                   } else {
+//                     navigateToMapsPage(snapshot.data);
+//                   }
+//                 },
+//                 color: _trackable ? Colors.blue[900] : Colors.grey,
+//                 textColor: Colors.white,
+//                 padding: EdgeInsets.all(8.0),
+//                 splashColor: Colors.grey,
+//               ),

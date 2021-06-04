@@ -77,17 +77,20 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Welcome!'),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
                                     Text(
-                                      '${snapshot.data.firstName} ${snapshot.data.lastName}!',
+                                      'Welcome, ',
                                       style: GoogleFonts.poppins(
-                                          color: Colors.blue[900],
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 18.0),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      '${snapshot.data.firstName}!',
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.blue[900],
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30.0,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -100,6 +103,9 @@ class _DashboardPageState extends State<DashboardPage> {
                           break;
                       }
                     },
+                  ),
+                  SizedBox(
+                    height: 30,
                   ),
                   LabelButton(
                     liteText: 'See all my bus points >',

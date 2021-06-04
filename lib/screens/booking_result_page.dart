@@ -25,28 +25,6 @@ class _BookingResultPageState extends State<BookingResultPage> {
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Container(
-              child: RaisedButton(
-                elevation: 0.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Text(
-                  "Go Back",
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Colors.blue[900],
-                textColor: Colors.white,
-                padding: EdgeInsets.all(8.0),
-                splashColor: Colors.grey,
-              ),
-            ),
             viewResults(widget.rides),
           ],
         ),
@@ -63,7 +41,6 @@ class _BookingResultPageState extends State<BookingResultPage> {
         itemBuilder: (context, index) {
           return Container(
             margin: EdgeInsets.all(5.0),
-            height: 200.0,
             decoration: new BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.grey[100],
@@ -125,10 +102,16 @@ class _BookingResultPageState extends State<BookingResultPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            RaisedButton(
-              elevation: 0.0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                primary: checkSeats(data) ? Colors.red : Colors.green,
+              ),
+              onPressed: () {
+                navigateToBookingFormPage(data);
+              },
               child: Text(
                 "Book ${data.occupiedSeat} / ${data.busSeat}",
                 style: GoogleFonts.poppins(
@@ -137,13 +120,6 @@ class _BookingResultPageState extends State<BookingResultPage> {
                   fontWeight: FontWeight.normal,
                 ),
               ),
-              onPressed: () {
-                navigateToBookingFormPage(data);
-              },
-              color: checkSeats(data) ? Colors.red : Colors.green,
-              textColor: Colors.white,
-              padding: EdgeInsets.all(8.0),
-              splashColor: Colors.grey,
             ),
           ],
         )
@@ -152,7 +128,7 @@ class _BookingResultPageState extends State<BookingResultPage> {
   }
 
   bool checkSeats(RideModel data) {
-    return data.occupiedSeat == data.busSeat;
+    return data.occupiedSeat >= data.busSeat;
   }
 
   navigateToBookingFormPage(RideModel ride) {

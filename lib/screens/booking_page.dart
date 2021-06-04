@@ -1,12 +1,11 @@
 import 'package:bmis_passenger/api/booking_api.dart';
 import 'package:bmis_passenger/models/ride_model.dart';
 import 'package:bmis_passenger/models/terminal_model.dart';
-import 'package:bmis_passenger/utils/shared_preferences.dart';
 import 'package:date_field/date_field.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../screens/booking_result_page.dart';
 import '../widgets/appbar.dart';
 import '../widgets/form_button.dart';
-import '../widgets/form_text_field.dart';
 import 'package:flutter/material.dart';
 
 class BookingPage extends StatefulWidget {
@@ -58,45 +57,77 @@ class _BookingPageState extends State<BookingPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DropdownButton(
-                      value: startTerminal,
-                      icon: const Icon(Icons.bus_alert),
-                      elevation: 16,
-                      iconSize: 24,
-                      onChanged: (val) {
-                        setState(() {
-                          startTerminal = val;
-                        });
-                      },
-                      items: widget.terminals
-                          .map(
-                            (TerminalModel fc) => DropdownMenuItem<TerminalModel>(
-                              child: Text(fc.terminalName),
-                              value: fc,
-                            ),
-                          )
-                          .toList(),
+                    InputDecorator(
+                      decoration: InputDecoration(
+                        labelText: 'Start Terminal',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
+                      child: DropdownButton(
+                        isExpanded: true,
+                        isDense: true,
+                        value: startTerminal,
+                        elevation: 16,
+                        iconSize: 24,
+                        onChanged: (val) {
+                          setState(() {
+                            startTerminal = val;
+                          });
+                        },
+                        items: widget.terminals
+                            .map(
+                              (TerminalModel fc) =>
+                                  DropdownMenuItem<TerminalModel>(
+                                child: Text(fc.terminalName),
+                                value: fc,
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
-                    DropdownButton(
-                      value: endTerminal,
-                      icon: const Icon(Icons.bus_alert),
-                      elevation: 16,
-                      iconSize: 24,
-                      onChanged: (val) {
-                        setState(() {
-                          endTerminal = val;
-                        });
-                      },
-                      items: widget.terminals
-                          .map(
-                            (TerminalModel fc) => DropdownMenuItem<TerminalModel>(
-                              child: Text(fc.terminalName),
-                              value: fc,
-                            ),
-                          )
-                          .toList(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InputDecorator(
+                      decoration: InputDecoration(
+                        labelText: 'Destination Terminal',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
+                      child: DropdownButton(
+                        value: endTerminal,
+                        isExpanded: true,
+                        isDense: true,
+                        elevation: 16,
+                        iconSize: 24,
+                        onChanged: (val) {
+                          setState(() {
+                            endTerminal = val;
+                          });
+                        },
+                        items: widget.terminals
+                            .map(
+                              (TerminalModel fc) =>
+                                  DropdownMenuItem<TerminalModel>(
+                                child: Text(fc.terminalName),
+                                value: fc,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     DateTimeFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Travel Date: ',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
                       firstDate: today,
                       initialValue: DateTime.parse(date),
                       mode: DateTimeFieldPickerMode.date,
@@ -149,7 +180,10 @@ class _BookingPageState extends State<BookingPage> {
       return;
     }
 
-    searchRide = SearchRide(startTerminal: startTerminal.terminalId, endTerminal: endTerminal.terminalId, dateTime: date);
+    searchRide = SearchRide(
+        startTerminal: startTerminal.terminalId,
+        endTerminal: endTerminal.terminalId,
+        dateTime: date);
     BookingApi.getRides(searchRide).then((rides) {
       Navigator.push(
         context,
