@@ -60,10 +60,14 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        initialIndex: 0,
-        length: 3,
-        child: Scaffold(
-        appBar: CustomAppBar('My Bookings', tabBar: tabBar(), size: 100.0,),
+      initialIndex: 0,
+      length: 3,
+      child: Scaffold(
+        appBar: CustomAppBar(
+          'My Bookings',
+          tabBar: tabBar(),
+          size: 100.0,
+        ),
         backgroundColor: Colors.white,
         body: TabBarView(
           children: <Widget>[
@@ -91,7 +95,8 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
                   if (snapshot.hasData && snapshot.data.length > 0) {
                     return ListView.builder(
                       itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) => BookingContainer(snapshot.data[index], cancelBooking),
+                      itemBuilder: (context, index) =>
+                          BookingContainer(snapshot.data[index], cancelBooking),
                     );
                   }
                 }
@@ -103,9 +108,7 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
     );
   }
 
-
-  cancelBooking(BookingModel book)
-  {
+  cancelBooking(BookingModel book) {
     if (_isButtonDisabled) {
       return;
     }
@@ -124,7 +127,7 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
           ),
         );
         setState(() {
-          activeBookings = BookingApi.getBookings();
+          activeBookings = BookingApi.getBookings(status: 'active');
         });
       }
       setState(() {
@@ -132,6 +135,4 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
       });
     });
   }
-
-  
 }

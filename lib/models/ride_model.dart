@@ -1,4 +1,3 @@
-
 class RideModel {
   int rideId;
   String routeName;
@@ -43,7 +42,7 @@ class RideModel {
       busName: json['bus_name'],
       scheduledTime: json['departure_time'],
       busSeat: json['bus_seat'],
-      occupiedSeat: json['booked_seats'] == null ? 0 : int.parse(json['booked_seats']),
+      occupiedSeat: json['booked_seats'],
       startTerminal: json['start_terminal'],
       endTerminal: json['end_terminal'],
       busNo: json['bus_no'],

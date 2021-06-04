@@ -14,7 +14,7 @@ class BookingApi {
     String url =
         '$API_URL/api/passenger/search-rides?$startTerminal&$endTerminal&$date';
     final response = await ApiService.getResponseList(uri: url, token: token);
-
+    print(response);
     List<RideModel> rides = [];
     for (int i = 0; i < response.length; i++) {
       RideModel r = RideModel.fromJson(response[i]);

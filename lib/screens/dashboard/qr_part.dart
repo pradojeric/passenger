@@ -47,12 +47,12 @@ class _QrPartState extends State<QrPart> {
                     if (snapshot.hasData && !snapshot.hasError) {
                       return populateQr(snapshot);
                     } else {
-                      return Text('Please connect to the internet');
+                      return Text('No ride today!');
                     }
                     break;
                   case ConnectionState.none:
                   default:
-                    return Text('No ride today!');
+                    return Text('No internet connection!');
                 }
               }),
         ],

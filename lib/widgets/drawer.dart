@@ -4,6 +4,7 @@ import 'package:bmis_passenger/screens/my_bookings_page.dart';
 import 'package:bmis_passenger/utils/shared_preferences.dart';
 import 'package:bmis_passenger/widgets/logout_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomDrawer {
   Widget drawer(BuildContext context) => Drawer(
@@ -31,10 +32,34 @@ class CustomDrawer {
                         if (snapshot.hasData) {
                           return ListView(
                             children: <Widget>[
-                              Text('${snapshot.data.lastName}, ${snapshot.data.firstName}'),
-                              Text('${snapshot.data.address}'),
-                              Text('${snapshot.data.email}'),
-                              Text('${snapshot.data.contact}'),
+                              Text(
+                                '${snapshot.data.lastName}, ${snapshot.data.firstName}',
+                                style: GoogleFonts.poppins(
+                                    color: Colors.blue[900],
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18.0),
+                              ),
+                              Text(
+                                '${snapshot.data.address}',
+                                style: GoogleFonts.poppins(
+                                    color: Colors.blue[900],
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18.0),
+                              ),
+                              Text(
+                                '${snapshot.data.email}',
+                                style: GoogleFonts.poppins(
+                                    color: Colors.blue[900],
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18.0),
+                              ),
+                              Text(
+                                '${snapshot.data.contact}',
+                                style: GoogleFonts.poppins(
+                                    color: Colors.blue[900],
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18.0),
+                              ),
                             ],
                           );
                         } else {
@@ -73,7 +98,8 @@ class CustomDrawer {
               ),
               title: Text('Logout'),
               onTap: () async {
-                showDialog(context: context, builder: (context) => LogoutDialog());
+                showDialog(
+                    context: context, builder: (context) => LogoutDialog());
               },
             )
           ],

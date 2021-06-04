@@ -24,25 +24,33 @@ class _BusPointsPageState extends State<BusPointsPage> {
                 return CircularProgressIndicator();
               case ConnectionState.active:
               case ConnectionState.done:
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (data, index) {
-                    return Container(
-                      margin: EdgeInsets.all(5.0),
-                      decoration: new BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[100],
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text(
-                          "${snapshot.data[index]['company_name']} : ${snapshot.data[index]['pivot']['points']} pts",
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (data, index) {
+                      return Container(
+                        margin: EdgeInsets.all(5.0),
+                        decoration: new BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey[100],
                         ),
-                      ),
-                    );
-                  },
-                );
-
+                        child: Column(
+                          children: [
+                            Text('Bus Points'),
+                            Container(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                "${snapshot.data[index]['company_name']} : ${snapshot.data[index]['pivot']['points']} pts",
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return Text('No Bus points');
+                }
                 break;
               default:
                 return Text('No Bus points available');
