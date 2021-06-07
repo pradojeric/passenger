@@ -3,6 +3,7 @@ import 'package:bmis_passenger/models/ride_model.dart';
 import 'package:bmis_passenger/models/terminal_model.dart';
 import 'package:date_field/date_field.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import '../screens/booking_result_page.dart';
 import '../widgets/appbar.dart';
 import '../widgets/form_button.dart';
@@ -18,17 +19,19 @@ class BookingPage extends StatefulWidget {
 
 class _BookingPageState extends State<BookingPage> {
   SearchRide searchRide;
-  Future<List<RideModel>> rides;
   TerminalModel startTerminal;
   TerminalModel endTerminal;
   String date;
-  var today = DateTime.now().add(Duration(days: 1));
+  DateTime today;
   bool _isButtonDisabled = false;
 
   @override
   void initState() {
+    startTerminal = null;
+    endTerminal = null;
+    today = DateTime.now().add(Duration(days: 1));
+    date = DateTime(today.year, today.month, today.day).toString();
     super.initState();
-    date = today.toString();
   }
 
   @override
@@ -129,7 +132,7 @@ class _BookingPageState extends State<BookingPage> {
                         ),
                       ),
                       firstDate: today,
-                      initialValue: DateTime.parse(date),
+                      initialValue: today,
                       mode: DateTimeFieldPickerMode.date,
                       autovalidateMode: AutovalidateMode.always,
                       onDateSelected: (DateTime value) {
@@ -169,6 +172,7 @@ class _BookingPageState extends State<BookingPage> {
     if (_isButtonDisabled) return;
 
     _isButtonDisabled = true;
+    print(date);
 
     if (startTerminal == null || endTerminal == null || date == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -181,9 +185,11 @@ class _BookingPageState extends State<BookingPage> {
     }
 
     searchRide = SearchRide(
-        startTerminal: startTerminal.terminalId,
-        endTerminal: endTerminal.terminalId,
-        dateTime: date);
+      startTerminal: startTerminal.terminalId,
+      endTerminal: endTerminal.terminalId,
+      dateTime: date,
+    );
+    print(searchRide.toJson());
     BookingApi.getRides(searchRide).then((rides) {
       Navigator.push(
         context,

@@ -37,17 +37,20 @@ class SharedService {
 
   static Future<void> setProfileDetails(RegisterModel model) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.setString("profileDetails", model != null ? jsonEncode(model.toJson()) : null);
+    return prefs.setString(
+        "profileDetails", model != null ? jsonEncode(model.toJson()) : null);
   }
 
   static Future<RegisterModel> getProfileDetails() async {
     final prefs = await SharedPreferences.getInstance();
-    return RegisterModel.fromJson(jsonDecode(prefs.getString('profileDetails')));
+    return RegisterModel.fromJson(
+        jsonDecode(prefs.getString('profileDetails')));
   }
 
   static Future<void> setEmail(LoginModel model) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.setString("email", model != null ? jsonEncode(model.toJson()) : null);
+    return prefs.setString(
+        "email", model != null ? jsonEncode(model.toJson()) : null);
   }
 
   static Future getEmail() async {
@@ -66,7 +69,8 @@ class SharedService {
 
   static Future<void> setSearchRide(SearchRide ride) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("searchRides", ride != null ? jsonEncode(ride.toJson()) : null);
+    await prefs.setString(
+        "searchRides", ride != null ? jsonEncode(ride.toJson()) : null);
   }
 
   static Future<SearchRide> getSearchRide() async {

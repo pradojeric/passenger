@@ -1,7 +1,4 @@
-import 'package:bmis_passenger/api/booking_api.dart';
 import 'package:bmis_passenger/models/ride_model.dart';
-import 'package:bmis_passenger/models/terminal_model.dart';
-import 'package:bmis_passenger/utils/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import '../screens/booking_form_page.dart';
 import '../widgets/appbar.dart';
@@ -17,6 +14,11 @@ class BookingResultPage extends StatefulWidget {
 }
 
 class _BookingResultPageState extends State<BookingResultPage> {
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
