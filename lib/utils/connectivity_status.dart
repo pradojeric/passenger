@@ -6,13 +6,15 @@ import 'package:connectivity/connectivity.dart';
 import 'constants.dart';
 
 class ConnectionStatusSingleton {
-  static final ConnectionStatusSingleton _singleton = ConnectionStatusSingleton._internal();
+  static final ConnectionStatusSingleton _singleton =
+      ConnectionStatusSingleton._internal();
   ConnectionStatusSingleton._internal();
 
   static ConnectionStatusSingleton getInstance() => _singleton;
   bool hasConnection = false;
 
-  StreamController connectionChangeController = new StreamController.broadcast();
+  StreamController connectionChangeController =
+      new StreamController.broadcast();
 
   final Connectivity _connectivity = Connectivity();
 

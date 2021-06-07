@@ -4,7 +4,8 @@ import 'screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  ConnectionStatusSingleton connectionStatus = ConnectionStatusSingleton.getInstance();
+  ConnectionStatusSingleton connectionStatus =
+      ConnectionStatusSingleton.getInstance();
   connectionStatus.initialize();
   runApp(MyApp());
 }

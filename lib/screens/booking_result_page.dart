@@ -2,6 +2,7 @@ import 'package:bmis_passenger/api/booking_api.dart';
 import 'package:bmis_passenger/models/ride_model.dart';
 import 'package:bmis_passenger/models/terminal_model.dart';
 import 'package:bmis_passenger/utils/shared_preferences.dart';
+import 'package:intl/intl.dart';
 import '../screens/booking_form_page.dart';
 import '../widgets/appbar.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +24,7 @@ class _BookingResultPageState extends State<BookingResultPage> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            viewResults(widget.rides),
-          ],
-        ),
+        child: viewResults(widget.rides),
       ),
     );
   }
@@ -93,7 +90,7 @@ class _BookingResultPageState extends State<BookingResultPage> {
             Text('Departure Time: ',
                 style: GoogleFonts.poppins(
                     color: Colors.blue[900], fontWeight: FontWeight.bold)),
-            Text('${data.scheduledTime}'),
+            Text('${timeFormat(data.scheduledTime)}'),
           ],
         ),
         SizedBox(
@@ -129,6 +126,13 @@ class _BookingResultPageState extends State<BookingResultPage> {
 
   bool checkSeats(RideModel data) {
     return data.occupiedSeat >= data.busSeat;
+  }
+
+  String timeFormat(String time) {
+    var date = DateFormat('yMMdd').format(DateTime.now()).toString();
+    var dateString = date.replaceAll('/', '') + ' ' + time;
+    var parseDate = DateTime.parse(dateString);
+    return DateFormat.jm().format(parseDate).toString();
   }
 
   navigateToBookingFormPage(RideModel ride) {
