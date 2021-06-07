@@ -20,7 +20,7 @@ class BookingApi {
       RideModel r = RideModel.fromJson(response[i]);
       rides.add(r);
     }
-    // await SharedService.setSearchRide(searchRide);
+    await SharedService.setSearchRide(searchRide);
     return rides;
   }
 
